@@ -1,0 +1,115 @@
+# ========================
+# VS Code
+# ========================
+.vscode/
+
+# ========================
+# Eclipse / STS
+# ========================
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache
+.metadata/
+bin/
+
+# ========================
+# IntelliJ IDEA
+# ========================
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+atlassian-ide-plugin.xml
+
+# ========================
+# NetBeans
+# ========================
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+nbactions.xml
+nb-configuration.xml
+
+# ========================
+# Visual Studio (caso use)
+# ========================
+*.sln
+*.suo
+*.user
+*.vs/
+*.vscode/
+
+# ========================
+# Java
+# ========================
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+
+# ========================
+# Maven
+# ========================
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# ========================
+# Gradle
+# ========================
+.gradle/
+build/
+.gradletasknamecache
+
+# ========================
+# Sistema Operacional
+# ========================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# Linux
+*~
+.directory
+
+# ========================
+# Segurança
+# ========================
+.env
+.env.local
+.env.*.local
+*.env
+application-local.properties
+application-dev.properties
+
+# ========================
+# Arquivos temporários / logs
+# ========================
+*.log
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+
+# ========================
+# Node.js (se usar frontend)
+# ========================
+node_modules/
+dist/
