@@ -4,9 +4,12 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
@@ -17,6 +20,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import simplexmed.estoque.UnidadeMedidaEntity;
 
 @Entity
 @Table(name = "tb_medicamentos")
@@ -45,6 +49,13 @@ public class MedicamentoEntity {
     @Column(name = "principioAtivo", length = 100, nullable = false)
     private String principioAtivo;
 
+    //Controle da unidade de medida que vai ser usada.
+
+    @NotNull(message = "A menor unidade de medida(MUD) do medicamento é obrigatória")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cod_und_medida", nullable = false)
+    private UnidadeMedidaEntity unidadeDeMedidaPadrao;
+
     @Column(name = "dosagem_referencia", length = 50)
     private String dosagem;
 
@@ -52,7 +63,7 @@ public class MedicamentoEntity {
 
     @NotNull(message = "A classificação da tarja é obrigratória")
     @Enumerated(EnumType.STRING)
-    @Column(name = "tipo_tarja",unique = true, nullable = false)
+    @Column(name = "tipo_tarja", nullable = false)
     private TipoTarja tipoTarja;
 
     // PARTE FÍSICA medicação
