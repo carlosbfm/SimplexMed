@@ -1,6 +1,7 @@
 package simplexmed.dosagem;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,6 +11,7 @@ import lombok.Setter;
 import simplexmed.medicamento.MedicamentoEntity;
 import simplexmed.paciente.PacienteEntity;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -25,7 +27,7 @@ public class DosagemEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "dosagem_seq")
     @SequenceGenerator(name = "dosagem_seq", sequenceName = "sq_tb_dosagens", allocationSize = 1)
     @Column(name = "id_dosagem")
-    private Long dosagem_id;
+    private Long dosagemId;
 
     @NotNull(message = "A associação a um paciente é obrigatória.")
     @ManyToOne(fetch = FetchType.LAZY)
@@ -36,6 +38,11 @@ public class DosagemEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_medicamento", nullable = false)
     private MedicamentoEntity medicamento;
+
+    @NotNull(message = "A quantidade da dose é obrigatório")
+    @DecimalMin(value = "0.01", message = "A dose deve ser maior que zero")
+    @Column(name = "quantidade_dose", precision = 10, scale = 2, nullable = false)
+    private BigDecimal quantidadeDose;
 
     @Embedded
     private Frequencia frequencia; 
