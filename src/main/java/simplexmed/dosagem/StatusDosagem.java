@@ -6,7 +6,9 @@ import lombok.Getter;
 public enum StatusDosagem {
     ATIVA("Ativa", "O tratamento está em curso e a gerar alertas."),
     PAUSADA("Pausada", "O tratamento foi temporariamente interrompido (ex: cirurgia ou exames)."),
-    FINALIZADA("Finalizada", "O ciclo do tratamento foi totalmente concluído.");
+    FINALIZADA("Finalizada", "O ciclo do tratamento foi totalmente concluído."),
+    AJUSTADA("Posologia Ajustada",
+            "A dose original foi modificada. Esta prescrição está inativa e foi substituída por uma nova versão.");
 
     private final String titulo;
     private final String descricao;
