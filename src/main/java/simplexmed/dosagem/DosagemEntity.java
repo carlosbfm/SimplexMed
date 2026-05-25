@@ -12,7 +12,11 @@ import simplexmed.medicamento.MedicamentoEntity;
 import simplexmed.paciente.PacienteEntity;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
 @Table(name = "tb_dosagens")
@@ -21,6 +25,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@EntityListeners(AuditingEntityListener.class)
 public class DosagemEntity {
 
     @Id
@@ -44,22 +49,27 @@ public class DosagemEntity {
     @Column(name = "quantidade_dose", precision = 10, scale = 2, nullable = false)
     private BigDecimal quantidadeDose;
 
+    @NotNull(message = "A especificação de frequência é obrigatória")
     @Embedded
     private Frequencia frequencia; 
 
     @NotNull(message = "A data de início do tratamento é obrigatória.")
     @Column(name = "data_inicio", nullable = false)
-    private LocalDateTime dataInicio;
+    private LocalDate dataInicio;
 
     @Column(name = "data_fim")
-    private LocalDateTime dataFim; 
+    private LocalDate dataFim; 
 
     @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "status_dosagem", length = 20, nullable = false)
-    private StatusDosagem status;
+    private StatusDosagem statusDosagem;
 
     @Column(name = "observacoes_clinicas", length = 500)
     private String observacoes;
+
+    @CreatedDate
+    @Column(name = "data_registro", updatable = false, nullable = false)
+    private LocalDateTime dataRegistro;
 
 }
