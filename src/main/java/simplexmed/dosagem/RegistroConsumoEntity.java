@@ -28,7 +28,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class RegistroConsumoEnitity {  
+public class RegistroConsumoEntity {  
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "reg_consumo_seq")
     @SequenceGenerator(name = "reg_consumo_seq", sequenceName = "sq_tb_registro_consumo", allocationSize = 1)  
