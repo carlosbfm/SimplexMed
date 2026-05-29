@@ -1,12 +1,15 @@
 package simplexmed.estoque;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
-import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -33,6 +36,7 @@ import simplexmed.paciente.PacienteEntity;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@EntityListeners(AuditingEntityListener.class)
 public class EstoqueEntity {
 
     @Id
@@ -66,9 +70,13 @@ public class EstoqueEntity {
     @JoinColumn(name = "cod_und_medida", nullable = false)
     private UnidadeMedidaEntity unidadeMedida;
 
-    @UpdateTimestamp
+    @LastModifiedDate
     @Column(name = "data_ultima_atualizacao")
-    private LocalDateTime dataUltimaAtualizacao;
+    private LocalDate dataUltimaAtualizacao;
+
+    @CreatedDate
+    @Column(name = "data_criacao")
+    private LocalDate dataCriacao;
 
     @Version
     @Column(name = "versao_lock")
